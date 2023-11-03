@@ -12,7 +12,8 @@
     "clientinstall": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "testDB": "node seed/testValuesDB.js",
-    "createUser": "node accessUsers/createUser.js"
+    "createUser": "node accessUsers/createUser.js",
+    "deleteUser": "node accessUsers/deleteUser.js"
   },
   "repository": {
     "type": "git",
