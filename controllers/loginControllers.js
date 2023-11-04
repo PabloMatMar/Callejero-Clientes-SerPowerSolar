@@ -7,19 +7,21 @@ const jwt = require('jsonwebtoken');
 const validatedUser = async (req, res) => {
     try {
         let login = false;
-        const credential = await Users.validatedUser(req.body.email.toLowerCase(), req.body.password);
-        req.body.password = "";
+        const data = JSON.parse(req.query.object);
+        const credential = await Users.validatedUser(data.employe.toLowerCase(), data.password);
+        data.password = "";
         if (credential == 1) {
             const payload = {
                 check: true,
-                user: req.body.email.toLowerCase(),
+                user: data.employe.toLowerCase(),
             };
             const token = jwt.sign(payload, SECRET, {
                 expiresIn: "1500000ms"
             });
             login = true;
-        };
-        res.cookie('token', token).status(200).json(login);
+            res.cookie('token', token).status(200).json(login);
+        } else
+            res.status(401).json(login);
     } catch (err) {
         res.status(401).json({ msj: err.message })
     };

@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt');
 const pool = require('../utils/pg_pool');
 const queries = require('../queries/queries');
 
-const validatedUser = async (email, password) => {
+const validatedUser = async (employe, password) => {
     let client, isPasswordCorrect;
     let result = 0;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.getUserData, [email]);
+        const data = await client.query(queries.getUserData, [employe]);
         if (data.rowCount == 1)
             isPasswordCorrect = await bcrypt.compare(password, data.rows[0].password);
         if (isPasswordCorrect)

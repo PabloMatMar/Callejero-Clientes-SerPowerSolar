@@ -5,8 +5,8 @@ const deleteUser = async () => {
     let client, isPasswordCorrect, data;
     try {
         client = await pool.connect();
-        const name = "Usuario de Prueba"; /*Introducir el nombre de usuario a eliminar*/
-        const password = "Prueba1.0" /*Introducir la clave del usuario*/
+        const name = ""; /*Introducir el nombre de usuario a eliminar*/
+        const password = ""; /*Introducir la clave del usuario*/
         const userDatas = await client.query(`
         SELECT *
         FROM employes
@@ -19,7 +19,7 @@ const deleteUser = async () => {
             DELETE
             FROM employes
             WHERE employe = $1;
-            `, [name]);
+            `, [name.toLowerCase()]);
             if (data.rowCount == 1)
                 console.log(`Usuario: ${name} eliminado!`)
             else
