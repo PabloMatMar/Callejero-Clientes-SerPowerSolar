@@ -11,6 +11,9 @@ const Nav = () => {
     <button>
       <Link to="/calles"> Buscar Calles </Link>
     </button>
+    <button>
+      <Link to="/"> Iniciar Sesión </Link>
+    </button>
   </nav>;
 };
 

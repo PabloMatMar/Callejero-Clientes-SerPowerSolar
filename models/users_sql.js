@@ -24,6 +24,22 @@ const validatedUser = async (employe, password) => {
     return result;
 };
 
+const getClients = async (nameEmploye) => {
+    let client;
+    let result = [];
+    try {
+        client = await pool.connect();
+        result = await client.query(queries.getAllClients, [nameEmploye]);
+        result = result.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    };
+    return result;
+}
 module.exports = {
-    validatedUser
+    validatedUser,
+    getClients
 }

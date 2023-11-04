@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { employeContext } from "./../../../context/employeContext";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line
   const [hasBeenLogin, setHasBeenLogin] = useState(false);
   const [user, setUser] = useState({});
+  const { setNameEmploye } = useContext(employeContext);
 
 
   const onSubmit = data => {
@@ -23,6 +25,7 @@ const Login = () => {
         res = await axios.post(`http://localhost:5000/?object=${param}`);
         if (res.data !== undefined && res.data === true) {
           setHasBeenLogin(true);
+          setNameEmploye(user.employe);
           setUser({});
         };
       };

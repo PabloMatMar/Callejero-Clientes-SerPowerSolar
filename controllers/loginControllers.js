@@ -23,7 +23,7 @@ const validatedUser = async (req, res) => {
         } else
             res.status(401).json(login);
     } catch (err) {
-        res.status(401).json({ msj: err.message })
+        res.status(500).json({ msj: err.message })
     };
 };
 

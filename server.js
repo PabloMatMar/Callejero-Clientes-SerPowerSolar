@@ -7,8 +7,10 @@ const app = express();
 const port = 5000;
 
 //Importacion rutas
-
-const loginRoutes = require('./routes/loginRoutes')
+//Ruta de logeo
+const loginRoutes = require('./routes/loginRoutes');
+//Ruta para pedir todos los clientes del empleado logeado
+const clientsOfEmployeRoutes = require('./routes/clientsOfEmployeRoutes')
 
 
 // MIDDLEWARES
@@ -18,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/', loginRoutes);
+app.use('/AllClients', clientsOfEmployeRoutes);
 
 
 
